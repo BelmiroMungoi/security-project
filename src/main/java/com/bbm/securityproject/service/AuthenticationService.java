@@ -1,7 +1,6 @@
 package com.bbm.securityproject.service;
 
 import com.bbm.securityproject.config.JwtService;
-import com.bbm.securityproject.model.Role;
 import com.bbm.securityproject.model.User;
 import com.bbm.securityproject.model.dto.AuthenticationRequest;
 import com.bbm.securityproject.model.dto.AuthenticationResponse;
@@ -28,7 +27,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(request.getRole())
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
